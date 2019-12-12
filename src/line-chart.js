@@ -122,9 +122,9 @@ class LineChart extends AbstractChart {
               })
               .join(" ") +
             ` ${paddingRight +
-              ((width - paddingRight) / dataset.data.length) *
-                (dataset.data.length - 1)},${(height / 4) * 3 +
-              paddingTop} ${paddingRight},${(height / 4) * 3 + paddingTop}`
+            ((width - paddingRight) / dataset.data.length) *
+            (dataset.data.length - 1)},${(height / 4) * 3 +
+            paddingTop} ${paddingRight},${(height / 4) * 3 + paddingTop}`
           }
           fill="url(#fillShadowGradient)"
           strokeWidth={0}
@@ -180,7 +180,7 @@ class LineChart extends AbstractChart {
     const baseHeight = this.calcBaseHeight(datas, height);
     const y = i => {
       const yHeight = this.calcHeight(dataset.data[i], datas, height);
-      return Math.floor(((baseHeight - yHeight) / 4) * 3 + paddingTop);
+      return Math.floor(((baseHeight - yHeight) / 4) * 3 + 0);
     };
 
     return [`M${x(0)},${y(0)}`]
@@ -203,13 +203,13 @@ class LineChart extends AbstractChart {
     return config.data.map((dataset, index) => {
       const result = this.getBezierLinePoints(dataset, config);
       return (
-        <Path
-          key={index}
-          d={result}
-          fill="none"
-          stroke={this.getColor(dataset, 0.2)}
-          strokeWidth={this.getStrokeWidth(dataset)}
-        />
+          <Path
+            key={index}
+            d={result}
+            fill="none"
+            stroke={this.getColor(dataset, 1)}
+            strokeWidth={this.getStrokeWidth(dataset)}
+          />
       );
     });
   };
@@ -220,9 +220,9 @@ class LineChart extends AbstractChart {
       const d =
         this.getBezierLinePoints(dataset, config) +
         ` L${paddingRight +
-          ((width - paddingRight) / dataset.data.length) *
-            (dataset.data.length - 1)},${(height / 4) * 3 +
-          paddingTop} L${paddingRight},${(height / 4) * 3 + paddingTop} Z`;
+        ((width - paddingRight) / dataset.data.length) *
+        (dataset.data.length - 1)},${(height / 4) * 3 +
+        paddingTop} L${paddingRight},${(height / 4) * 3 + paddingTop} Z`;
       return (
         <Path
           key={index}
@@ -290,56 +290,56 @@ class LineChart extends AbstractChart {
             <G>
               {withInnerLines
                 ? this.renderHorizontalLines({
-                    ...config,
-                    count: 4,
-                    paddingTop,
-                    paddingRight
-                  })
+                  ...config,
+                  count: 4,
+                  paddingTop,
+                  paddingRight
+                })
                 : withOuterLines
-                ? this.renderHorizontalLine({
+                  ? this.renderHorizontalLine({
                     ...config,
                     paddingTop,
                     paddingRight
                   })
-                : null}
+                  : null}
             </G>
             <G>
               {withHorizontalLabels
                 ? this.renderHorizontalLabels({
-                    ...config,
-                    count: Math.min(...datas) === Math.max(...datas) ? 1 : 4,
-                    data: datas,
-                    paddingTop,
-                    paddingRight,
-                    formatYLabel
-                  })
+                  ...config,
+                  count: Math.min(...datas) === Math.max(...datas) ? 1 : 4,
+                  data: datas,
+                  paddingTop,
+                  paddingRight,
+                  formatYLabel
+                })
                 : null}
             </G>
             <G>
               {withInnerLines
                 ? this.renderVerticalLines({
-                    ...config,
-                    data: data.datasets[0].data,
-                    paddingTop,
-                    paddingRight
-                  })
+                  ...config,
+                  data: data.datasets[0].data,
+                  paddingTop,
+                  paddingRight
+                })
                 : withOuterLines
-                ? this.renderVerticalLine({
+                  ? this.renderVerticalLine({
                     ...config,
                     paddingTop,
                     paddingRight
                   })
-                : null}
+                  : null}
             </G>
             <G>
               {withVerticalLabels
                 ? this.renderVerticalLabels({
-                    ...config,
-                    labels,
-                    paddingRight,
-                    paddingTop,
-                    formatXLabel
-                  })
+                  ...config,
+                  labels,
+                  paddingRight,
+                  paddingTop,
+                  formatXLabel
+                })
                 : null}
             </G>
             <G>
