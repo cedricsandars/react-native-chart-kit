@@ -180,7 +180,7 @@ class LineChart extends AbstractChart {
     const baseHeight = this.calcBaseHeight(datas, height);
     const y = i => {
       const yHeight = this.calcHeight(dataset.data[i], datas, height);
-      return Math.floor(((baseHeight - yHeight) / 4) * 3 + 0);
+      return Math.floor(((baseHeight - yHeight) / 4) * 3 + 2);
     };
 
     return [`M${x(0)},${y(0)}`]
